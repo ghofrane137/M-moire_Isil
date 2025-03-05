@@ -46,6 +46,7 @@ public interface RessourcesRepository extends CrudRepository<Ressources,Long> {
     Optional<Ressources> findByTitreAndNiveauAndSemestre(String titre, String niveau, int semestre);
 
 
+
     Optional<Ressources> findByTitreAndSemestreAndNiveau(String titre, int semestre, String niveau);
 
 
