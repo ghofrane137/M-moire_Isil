@@ -1,0 +1,28 @@
+.search-container {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: -12%; /* Espace entre le paragraphe et la barre */
+    margin-left: 5.5%;
+  }
+  
+  .search-bar {
+    width: 30%;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 20px;
+    outline: none;
+    transition: all 0.3s ease;
+  }
+  
+  .search-bar:focus {
+    border-color: #6a5acd; /* Couleur violette au focus */
+    box-shadow: 0 0 8px rgba(106, 90, 205, 0.5);
+  }
+  .search-icon {
+    position: absolute;
+    left: 31%;
+    bottom: 17%;
+    color: #888;
+    font-size: 20px;
+  }

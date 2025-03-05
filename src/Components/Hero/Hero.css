@@ -1,0 +1,21 @@
+.hero {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Aligner le contenu à gauche */
+     /* Ajuste cette valeur pour positionner le texte correctement */
+    background: url('../../assets/hero.png') no-repeat right;
+    background-size: contain;
+    margin-top: -10%;
+    margin-left: 9%;
+
+}
+
+.hero-text {
+    max-width: 600px; /* Réduit la largeur pour éviter qu’il s’étale trop */
+    text-align: left; /* S'assurer que le texte reste aligné à gauche */
+    margin: -3%;
+    margin-top: -10%;
+
+}

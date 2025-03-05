@@ -1,0 +1,22 @@
+.typewriter-container {
+    text-align: left; /* Alignement du texte à gauche */
+    max-width: 600px; /* Largeur max pour éviter que ça prenne trop de place */
+    margin-left: -35%; /* Ajuste la position à gauche */
+    margin-top: 5%;
+}
+
+.typewriter-text {
+    font-size: 2.5rem; /* Taille du texte plus grande */
+    font-weight: bold; /* Texte en gras */
+    color: #222; /* Couleur sombre */
+}
+
+.animated-text {
+    color: #9886FE; /* Couleur bleue pour le texte animé */
+}
+
+.subtitle {
+    font-size: 1.4rem;
+    color: #555; /* Couleur légèrement grise */
+    margin-top: 10px;
+}
