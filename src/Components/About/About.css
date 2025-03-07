@@ -31,3 +31,10 @@
     color: #676767;
     margin-bottom: 15px;
 }
+
+@media (max-width: 768px){
+    .login-btn{
+        margin-left: 1px;
+
+    }
+}

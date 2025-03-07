@@ -15,7 +15,33 @@
 .hero-text {
     max-width: 600px; /* Réduit la largeur pour éviter qu’il s’étale trop */
     text-align: left; /* S'assurer que le texte reste aligné à gauche */
-    margin: -3%;
-    margin-top: -10%;
+    margin-left: -4%;
+    margin-top: 5%;
 
+}
+
+@media (max-width: 768px) {
+    .hero {
+        justify-content: center; /* Centrer le contenu sur les écrans plus petits */
+        margin-left: 0; /* Supprimer la marge gauche */
+        background-position: center; /* Centrer l'image de fond */
+    }
+
+    .hero-text {
+        max-width: 100%; /* Utiliser toute la largeur disponible */
+        text-align: center; /* Centrer le texte */
+        margin: 0; /* Réinitialiser les marges */
+        padding: 0 20px; /* Ajouter un peu de padding sur les côtés */
+    }
+
+}
+
+@media (max-width: 480px) {
+    .hero {
+        background-size: cover; /* Ajuster la taille de l'image pour couvrir tout l'écran */
+    }
+
+    .hero-text h1 {
+        font-size: 1.5rem; /* Réduire la taille de la police pour les petits écrans */
+    }
 }

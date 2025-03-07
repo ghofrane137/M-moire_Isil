@@ -1,93 +1,139 @@
+/* Contact.css */
+
 .contact {
-    margin: 40px auto;
-    max-width: 90%;
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    gap: 50px;
-}
-
-.contact-col {
-    flex-basis: 48%;
-    color: #4A4A4A;
-}
-
-.contact-col h2 {
-    font-weight: 600;
-    font-size: 24px;
-    color: #7A69E9; /* Légèrement plus foncé */
+    align-items: flex-start;
+    padding: 50px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    margin: -110px auto;
+    max-width: 1200px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
-    margin-top: 50px;
-}
-
-.contact-col h3 {
-    color: #000F38;
-    font-weight: 500;
-    font-size: 22px;
+  }
+  
+  .contact-col {
+    flex: 1;
+    margin: 0 20px;
+  }
+  .contact-col form input {
+    pointer-events: auto;
+    user-select: auto;
+  }
+  
+  
+  .contact-col h2 {
+    font-size: 2.5rem;
+    color: #9886FE;
+    margin-bottom: 20px;
+  }
+  
+  .contact-col h3 {
+    font-size: 1.5rem;
+    color: #555;
+    margin-bottom: 20px;
     display: flex;
     align-items: center;
-    margin-bottom: 15px;
-}
-
-.contact-col h3 img {
-    width: 24px;
-    margin-left: 10px;
-}
-
-.contact-col p {
-    max-width: 450px;
-    font-size: 18px;
-    color: #5A5A5A;
-}
-
-/* FORMULAIRE */
-form {
-    background: #C8B8AF; /* Couleur plus foncée */
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .contact-col h3 img {
+    width: 25px;
+    margin-left:10px;
+    margin-bottom: -33px;
+  }
+  
+  .contact-col p {
+    font-size: 1rem;
+    color: #777;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  
+  .contact-col form {
     display: flex;
     flex-direction: column;
-    gap: 15px;
-}
-
-form label {
-    font-weight: 600;
-    color: #2D2D2D;
-}
-
-form input, form textarea {
-    width: 100%;
+  }
+  
+  .contact-col form label {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 5px;
+  }
+  
+  .contact-col form input,
+  .contact-col form textarea {
     padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
     border-radius: 5px;
-    border: 1px solid #B0A495;
-    font-size: 16px;
-}
-
-form textarea {
-    resize: none;
-}
-
-.btn-contact {
-    background: #7A69E9;
-    color: white;
-    font-weight: bold;
-    padding: 10px 15px;
+    font-size: 1rem;
+    color: #333;
+  }
+  
+  .contact-col form textarea {
+    resize: vertical;
+    min-height: 150px;
+  }
+  
+  .contact-col form button {
+    background-color: #9886FE;
+    color: #fff;
+    padding: 10px 20px;
     border: none;
-    border-radius: 5px;
+    border-radius: 25px;
+    font-size: 1rem;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    transition: 0.3s;
-}
-
-.btn-contact:hover {
-    background: #5A49C9;
-}
-
-.btn-contact img {
-    width: 16px; /* Ajuste la taille selon tes préférences */
-    height: auto;
-}
+    width: 110px;
+  }
+  
+  .contact-col form button img {
+    width: 20px;
+    margin-left: 10px;
+    
+  }
+  
+  .contact-col form button:hover {
+    background-color: #4b3f93;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .contact {
+      flex-direction: column;
+      padding: 20px;
+    }
+  
+    .contact-col {
+      margin: 0;
+      margin-bottom: 30px;
+    }
+  
+    .contact-col h2 {
+      font-size: 2rem;
+    }
+  
+    .contact-col h3 {
+      font-size: 1.2rem;
+    }
+  
+    .contact-col p {
+      font-size: 0.9rem;
+    }
+  
+    .contact-col form input,
+    .contact-col form textarea {
+      font-size: 0.9rem;
+    }
+  
+    .contact-col form button {
+      font-size: 0.9rem;
+    }
+  }
+  .contact-col span{
+    display: block;
+    margin:20px 0 ;
+  }

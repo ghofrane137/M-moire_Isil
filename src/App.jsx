@@ -8,6 +8,7 @@ import Statistiques from './Components/Statistiques/Statistiques';
 import Avis from './Components/Avis/Avis';
 import Slides from './Components/Avis/Slides';
 import Contact from './Components/Contact/Contact';
+import Footer from './Components/Footer/Footer';
 
 
 const App = () => {
@@ -21,6 +22,7 @@ const App = () => {
     <Statistiques/>
     <Slides/>
     <Contact/>
+    <Footer/>
     
     </div>
   )

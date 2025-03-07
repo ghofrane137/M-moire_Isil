@@ -26,3 +26,39 @@
     color: #888;
     font-size: 20px;
   }
+  /* Media Queries pour la réactivité */
+
+@media (max-width: 768px) {
+  .search-container {
+      justify-content: center; /* Centrer la barre de recherche */
+      margin-left: 0; /* Réinitialiser la marge gauche */
+      margin-top: -8%; /* Ajuster l'espacement */
+  }
+
+  .search-bar {
+      width: 60%; /* Augmenter la largeur pour les écrans moyens */
+  }
+
+  .search-icon {
+      left: 75.5%; /* Ajuster la position de l'icône */
+      bottom: -11%; /* Ajuster la position de l'icône */
+  }
+}
+
+@media (max-width: 480px) {
+  .search-container {
+      margin-top: -5%; /* Ajuster l'espacement pour les petits écrans */
+  }
+
+  .search-bar {
+      width: 80%; /* Utiliser presque toute la largeur sur les petits écrans */
+      font-size: 14px; /* Réduire la taille de la police */
+  }
+
+  .search-icon {
+      left: 83%; /* Ajuster la position de l'icône */
+      bottom: -22.5%; /* Ajuster la position de l'icône */
+      font-size: 18px; /* Réduire la taille de l'icône */
+      right: 20%;
+  }
+}

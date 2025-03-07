@@ -56,12 +56,15 @@
     }
 
     .statistique_img {
-        width: 100%;
+        width: 80%;
+        margin-left: -20%;
     }
 
     .statistique h2 {
         max-width: 100%;
+        
     }
+    
 }
 
 /* Incrémentation */

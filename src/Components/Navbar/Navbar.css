@@ -42,6 +42,12 @@ ul li{
 .right-section {
     display: flex;
     align-items: center;
+    margin-left: auto; /* Pousse à droite */
+}
+
+/* Style spécifique au bouton mobile */
+.mobile-login {
+    display: none; /* Caché sur desktop */
 }
 
 .login-btn {
@@ -49,9 +55,86 @@ ul li{
     color: #fff;
     padding: 8px 15px;
     border-radius: 5px;
+    margin-left: -45%;
 }
 
 .login-btn:hover {
     background-color: #6f5de7;
 }
+.menu-icon{
+    display: none;
+    z-index: 20;
+    position: relative;
+}
+.hide-menu-icon {
+    display: none; /* Masquer l'icône lorsque le menu est ouvert */
+}
 
+/*media query*/
+@media (max-width :768px){
+    .logo{
+        width: 100px;
+    }
+    nav ul li{
+        margin: 10px 15px;
+        white-space: nowrap;
+    }
+    .menu-icon {
+        display: block;
+        width: 30px;
+        cursor: pointer;
+        margin-top: -60px;
+    }
+  
+    
+}
+/* Version mobile */
+@media (max-width: 480px) {
+    .right-section {
+        display: none; /* Cacher le bouton dans la version desktop en mobile */
+    }
+    
+
+    .menu-icon {
+        display: block;
+        width: 30px;
+        cursor: pointer;
+    }
+
+    nav ul {
+        position: fixed;
+        top: 0;
+        right: -250px; /* Caché par défaut */
+        bottom: 0;
+        background: #b5aceb;
+        width: 200px;
+        padding-top: 20px;
+        transition: right 0.5s ease-in-out;
+        height: 1000px;
+        z-index: -1;
+    }
+
+    nav ul.mobile-menu {
+        right: 0; /* Afficher le menu */
+    }
+
+    nav ul li {
+        display: block;
+        margin: 25px 40px;
+    }
+
+    /* Afficher le bouton "Se connecter" dans le menu mobile */
+    .mobile-login {
+        display: block;
+        text-align: center;
+    }
+
+    .mobile-login .login-btn {
+        display: block;
+        width: 80%;
+        margin: 20px auto;
+        background: none;
+    }
+
+    
+}

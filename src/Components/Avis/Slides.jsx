@@ -13,23 +13,30 @@ const avisList = [
 ];
 
 const Slides = () => {
+  // Dupliquer les diapositives pour une boucle infinie fluide
+  const duplicatedAvisList = [...avisList, ...avisList, ...avisList];
+
   return (
     <div className="slider-container">
-        <h2 >Témoignages de nos utilisateurs 🗣️🌟</h2>
+      <h2>Témoignages de nos utilisateurs 🗣️🌟</h2>
       <Swiper
         modules={[Autoplay]}
-        spaceBetween={20} // Espace entre les cartes
-        slidesPerView="auto"
-        centeredSlides={true} // Centrer les cartes
+        spaceBetween={0} // Pas d'espace entre les diapositives
+        slidesPerView="auto" // Ajuste automatiquement le nombre de diapositives visibles
+        loop={true} // Boucle infinie
         autoplay={{
-          delay: 1,
-          disableOnInteraction: false,
+          delay: 1, // Défilement continu
+          disableOnInteraction: false, // Ne pas s'arrêter lors de l'interaction
           pauseOnMouseEnter: true, // Pause au survol
         }}
-        speed={7500}
-        loop={true}
+        speed={5000} // Vitesse de défilement (ajustez selon vos besoins)
+        freeMode={{
+          enabled: true, // Mode libre pour un défilement fluide
+          momentum: false, // Désactive l'effet d'inertie
+        }}
+        allowTouchMove={false} // Désactive le glissement manuel
       >
-        {avisList.map((avis, index) => (
+        {duplicatedAvisList.map((avis, index) => (
           <SwiperSlide key={index} className="review-card">
             <div className="stars">
               {Array.from({ length: avis.note }, (_, i) => (
