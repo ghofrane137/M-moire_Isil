@@ -15,6 +15,7 @@ import lombok.NoArgsConstructor;
 
 import lombok.Setter;
 
+
 import java.util.List;
 
 
@@ -65,6 +66,10 @@ public class Utilisateur{
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "utilisateur")
     private List<Historique> historiques;
+
+
+    @OneToMany( cascade = CascadeType.ALL ,mappedBy = "utilisateur")
+    private List<Signalement> signalements;
 
 
 }
