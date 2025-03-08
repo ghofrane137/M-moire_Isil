@@ -7,8 +7,16 @@ import com.memoire.Memoire.entities.Utilisateur;
 import org.springframework.data.repository.CrudRepository;
 
 
+import org.springframework.stereotype.Repository;
+
+
 import java.util.List;
+
+
 import java.util.Optional;
+
+
+@Repository
 
 
 public interface UtilisateurRepository extends CrudRepository<Utilisateur, Long> {
@@ -34,50 +42,57 @@ public interface UtilisateurRepository extends CrudRepository<Utilisateur, Long>
     void deleteByEmail(String email);
 
 
-    void deleteByTelephone(String telephone);Optional<Utilisateur> findById(Long id);
+    void deleteByTelephone(String telephone);
 
 
 
-    Optional<Utilisateur> findByNom(String nom);
+    List<Utilisateur> findAll();
 
 
-    Optional<Utilisateur> findByEmail(String email);
+    Optional<Utilisateur> findById(Long id);
 
 
-    Optional<Utilisateur> findByPrenom(String prenom);
+    Optional<Utilisateur> findAllByNom(String nom);
 
 
-    Optional<Utilisateur> findByTelephone(String telephone);
+    Optional<Utilisateur> findAllByRole(String role);
 
 
-    Optional<Utilisateur> findByNomContainingIgnoreCase(String nom);
+    Optional<Utilisateur> findAllByAdresse(String adresse);
 
 
-    Optional<Utilisateur> findByEmailAndNom(String email, String nom);
+    Optional<Utilisateur> findAllByEmail(String email);
 
 
-    Optional<Utilisateur> findByNomAndPrenom(String nom, String prenom);
+    Optional<Utilisateur> findAllByPrenom(String prenom);
 
 
-    Optional<Utilisateur> findByEmailContainingIgnoreCase(String email);
+    Optional<Utilisateur> findAllByTelephone(String telephone);
 
 
-    Optional<Utilisateur> findByRoleAndAdresse(String role, String adresse);
+    Optional<Utilisateur> findAllByNomContainingIgnoreCase(String nom);
 
 
-    Optional<Utilisateur> findByEmailAndPrenom(String email, String prenom);
+    Optional<Utilisateur> findAllByEmailAndNom(String email, String nom);
 
 
-    Optional<Utilisateur> findByAdresseContainingIgnoreCase(String adresse);
+    Optional<Utilisateur> findAllByNomAndPrenom(String nom, String prenom);
 
 
-    Optional<Utilisateur> findByEmailAndTelephone(String email, String telephone);
+    Optional<Utilisateur> findAllByEmailContainingIgnoreCase(String email);
 
 
-    Optional<Utilisateur> findByEmailAndNomAndPrenom(String email, String nom, String prenom);
+    Optional<Utilisateur> findAllByRoleAndAdresse(String role, String adresse);
 
 
+    Optional<Utilisateur> findAllByEmailAndPrenom(String email, String prenom);
 
 
+    Optional<Utilisateur> findAllByAdresseContainingIgnoreCase(String adresse);
 
+
+    Optional<Utilisateur> findAllByEmailAndTelephone(String email, String telephone);
+
+
+    Optional<Utilisateur> findAllByEmailAndNomAndPrenom(String email, String nom, String prenom);
 }

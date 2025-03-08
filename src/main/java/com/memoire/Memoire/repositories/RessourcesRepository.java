@@ -7,10 +7,14 @@ import com.memoire.Memoire.entities.Ressources;
 import org.springframework.data.repository.CrudRepository;
 
 
+import java.util.List;
 import java.util.Optional;
 
 
 public interface RessourcesRepository extends CrudRepository<Ressources,Long> {
+
+
+    List<Ressources> findAll();
 
 
     Optional<Ressources> findById(Long id);
