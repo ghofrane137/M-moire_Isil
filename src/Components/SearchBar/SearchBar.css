@@ -1,64 +1,41 @@
+/* Conteneur de la barre de recherche */
 .search-container {
-    display: flex;
-    justify-content: flex-start;
-    margin-top: -12%; /* Espace entre le paragraphe et la barre */
-    margin-left: 5.5%;
-  }
-  
-  .search-bar {
-    width: 30%;
-    padding: 10px;
-    font-size: 16px;
-    border: 2px solid #ccc;
-    border-radius: 20px;
-    outline: none;
-    transition: all 0.3s ease;
-  }
-  
-  .search-bar:focus {
-    border-color: #6a5acd; /* Couleur violette au focus */
-    box-shadow: 0 0 8px rgba(106, 90, 205, 0.5);
-  }
-  .search-icon {
-    position: absolute;
-    left: 31%;
-    bottom: 17%;
-    color: #888;
-    font-size: 20px;
-  }
-  /* Media Queries pour la réactivité */
-
-@media (max-width: 768px) {
-  .search-container {
-      justify-content: center; /* Centrer la barre de recherche */
-      margin-left: 0; /* Réinitialiser la marge gauche */
-      margin-top: -8%; /* Ajuster l'espacement */
-  }
-
-  .search-bar {
-      width: 60%; /* Augmenter la largeur pour les écrans moyens */
-  }
-
-  .search-icon {
-      left: 75.5%; /* Ajuster la position de l'icône */
-      bottom: -11%; /* Ajuster la position de l'icône */
-  }
+  max-width: 500px; /* Largeur maximale */
+  margin: 0 auto; /* Centrer horizontalement */
+  padding: 1rem; /* Espacement interne */
+  margin-top: -4.375rem;
 }
 
-@media (max-width: 480px) {
-  .search-container {
-      margin-top: -5%; /* Ajuster l'espacement pour les petits écrans */
-  }
+/* Champ de recherche */
+.form-control {
+  border-radius: 25px; /* Coins arrondis */
+  border: 2px solid #9886FE; /* Bordure bleue */
+  padding: 0.75rem 1.5rem; /* Espacement interne */
+  font-size: 1rem; /* Taille de la police */
+  transition: border-color 0.3s ease; /* Transition fluide */
+}
 
-  .search-bar {
-      width: 80%; /* Utiliser presque toute la largeur sur les petits écrans */
-      font-size: 14px; /* Réduire la taille de la police */
-  }
+.form-control:focus {
+  border-color: #9886FE; /* Changement de couleur au focus */
+  box-shadow: none; /* Supprimer l'ombre par défaut de Bootstrap */
+}
 
-  .search-icon {
-      left: 83%; /* Ajuster la position de l'icône */
-      bottom: -22.5%; /* Ajuster la position de l'icône */
-      font-size: 18px; /* Réduire la taille de l'icône */
-      right: 20%;
-  }
+/* Bouton de recherche */
+.btn-outline-info {
+  border-radius: 25px; /* Coins arrondis */
+  border: 2px solid #9886FE; /* Bordure bleue */
+  color: #fff; /* Couleur du texte */
+  padding: 0.75rem 1.5rem; /* Espacement interne */
+  font-size: 1rem; /* Taille de la police */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Transition fluide */
+}
+
+.btn-outline-info:hover {
+  background-color: #9886FE; /* Fond bleu au survol */
+  color: white; /* Texte blanc au survol */
+}
+
+/* Icône de recherche */
+.btn-outline-info svg {
+  margin-right: 0.5rem; /* Espacement entre l'icône et le texte */
 }

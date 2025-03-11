@@ -8,14 +8,18 @@ function SearchBar() {
 
   return (
     <div className="search-container">
-      <FontAwesomeIcon icon={faSearch} className="search-icon" />
-      <input
-        type="text"
-        className="search-bar"
-        placeholder="Rechercher une ressource..."
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-      />
+      <form className="d-flex">
+        <input
+          className="form-control ms-1"
+          type="search"
+          placeholder="Search"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+        />
+        <button className="btn btn-outline-info" type="submit">
+          <FontAwesomeIcon icon={faSearch} /> {/* Icône de recherche */}
+        </button>
+      </form>
     </div>
   );
 }

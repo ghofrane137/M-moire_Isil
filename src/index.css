@@ -8,7 +8,7 @@
 
 }
 body{
-  background-color: #F8F4F1;
+  background-color: #F8F4F1 !important ;
   overflow-x: hidden;
 }
 a{
@@ -17,11 +17,11 @@ a{
   line-height: 1;
   cursor:pointer;
 }
-.container{
+/* .container{
   padding-left: 5%;
   padding-right: 10%;
-}
-.btn{
+} */
+/* .btn{
   background:#FFF;
   color: #212121;
   padding: 14px 25px;
@@ -30,14 +30,15 @@ a{
   cursor: pointer;
   border: 0;
   outline: 0;
-}
+} */
+
 
 /*media query*/
 @media (max-width : 1200px){
-  .container{
+  /* .container{
     padding-left: 5%;
     padding-right: 5%;
-  }
+  } */
   .btn{
     padding: 14px 22px;
     background: none;

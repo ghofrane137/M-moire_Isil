@@ -45,9 +45,12 @@
 @media (max-width: 480px) {
     .typewriter-text {
         font-size: 1.5rem; /* Réduire davantage la taille de la police pour les petits écrans */
+        background-color: rgba(0, 0, 0, 0.7); 
     }
 
     .subtitle {
         font-size: 1rem; /* Réduire la taille de la police du sous-titre pour les petits écrans */
+        
+        
     }
 }

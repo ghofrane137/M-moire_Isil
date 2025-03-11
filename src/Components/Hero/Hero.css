@@ -7,8 +7,9 @@
      /* Ajuste cette valeur pour positionner le texte correctement */
     background: url('../../assets/hero.png') no-repeat right;
     background-size: contain;
-    margin-top: -10%;
     margin-left: 9%;
+    margin-top: 0;
+  
 
 }
 
@@ -41,7 +42,10 @@
         background-size: cover; /* Ajuster la taille de l'image pour couvrir tout l'écran */
     }
 
-    .hero-text h1 {
-        font-size: 1.5rem; /* Réduire la taille de la police pour les petits écrans */
+    .hero-text {
+        font-size: 0.75rem; /* Réduire la taille de la police pour les petits écrans */
+        margin-bottom: -55%;
+        
     }
+    
 }

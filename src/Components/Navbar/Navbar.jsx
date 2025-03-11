@@ -1,45 +1,133 @@
-import React, { useState } from 'react';
-import { Link } from "react-scroll";
-import './Navbar.css';
-import Logo from '../../assets/Logo.PNG';
-import menu_icon from '../../assets/menu_icon.png';
+import React, { useEffect, useState } from "react";
+import { Link as ScrollLink } from "react-scroll"; // Importez ScrollLink
+import "./Navbar.css";
+import Logo from "../../assets/Logo.PNG";
+import LoginContainer from "../Login/LoginContainer";
 
 const Navbar = () => {
-  const [mobileMenu, setMobileMenu] = useState(false);
+  const [scrolling, setScrolling] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
-  const toggleMenu = () => {
-    setMobileMenu(!mobileMenu);
+  const togglePopup = () => {
+    setShowPopup(!showPopup);
   };
 
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
+  const closeMenu = () => {
+    setMenuOpen(false);
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolling(window.scrollY > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <nav>
-      <img src={Logo} alt="Logo" className='logo' />
+    <>
+      <nav className={`navbar navbar-expand-lg navbar-light fixed-top ${scrolling ? "scrolled" : ""}`}>
+        <div className="container">
+          <a className="navbar-brand" href="#">
+            <img className="logo" src={Logo} alt="logo..." />
+          </a>
 
-      {/* Liste des liens */}
-      <ul className={mobileMenu ? "mobile-menu" : ""}>
-        <li><Link to="hero" smooth={true} offset={-15} duration={500} className="btn" onClick={toggleMenu}>Accueil</Link></li>
-        <li><Link to="about" smooth={true} offset={-200} duration={500} className="btn" onClick={toggleMenu}>À propos</Link></li>
-        <li><Link to="statistique" smooth={true} offset={-150} duration={500} className="btn" onClick={toggleMenu}>Statistiques</Link></li>
-        <li><Link to="slider-container" smooth={true} offset={-150} duration={500} className="btn" onClick={toggleMenu}>Avis</Link></li>
-        <li><Link to="contact" smooth={true} offset={-150} duration={500} className="btn" onClick={toggleMenu}>Contact & Aide</Link></li>
-        {/* Bouton Se connecter pour mobile */}
-        <li className="mobile-login"><button className="btn login-btn">Se connecter</button></li>
-      </ul>
+          {/* Bouton pour ouvrir/fermer le menu */}
+          <button className="navbar-toggler" type="button" onClick={toggleMenu}>
+            <span className="navbar-toggler-icon"></span>
+          </button>
 
-      {/* Section bouton "Se connecter" en dehors du menu mobile (version desktop) */}
-      <div className="right-section">
-        <button className="btn login-btn">Se connecter</button>
-      </div>
+          {/* Menu avec état ouvert/fermé */}
+          <div className={`collapse navbar-collapse ${menuOpen ? "show" : ""}`} id="navbarSupportedContent">
+            <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
+              <li className="nav-item">
+                <ScrollLink
+                  to="hero" // ID de la section cible
+                  smooth={false} // Défilement fluide
+                  duration={500} // Durée du défilement
+                  offset={-15} // Ajustement pour la hauteur de la navbar
+                  className={`nav-link px-4 ${menuOpen ? "active-link" : ""}`}
+                  onClick={closeMenu}
+                >
+                  Accueil
+                </ScrollLink>
+              </li>
+              <li className="nav-item">
+                <ScrollLink
+                  to="about"
+                  smooth={false}
+                  duration={500}
+                  offset={-200}
+                  className={`nav-link px-4 ${menuOpen ? "active-link" : ""}`}
+                  onClick={closeMenu}
+                >
+                  À propos
+                </ScrollLink>
+              </li>
+              <li className="nav-item">
+                <ScrollLink
+                  to="statistique"
+                  smooth={false}
+                  duration={500}
+                  offset={-150}
+                  className={`nav-link px-4 ${menuOpen ? "active-link" : ""}`}
+                  onClick={closeMenu}
+                >
+                  Statistiques
+                </ScrollLink>
+              </li>
+              <li className="nav-item">
+                <ScrollLink
+                  to="slider-container"
+                  smooth={false}
+                  duration={500}
+                  offset={-150}
+                  className={`nav-link px-4 ${menuOpen ? "active-link" : ""}`}
+                  onClick={closeMenu}
+                >
+                  Avis
+                </ScrollLink>
+              </li>
+              <li className="nav-item">
+                <ScrollLink
+                  to="contact"
+                  smooth={false}
+                  duration={500}
+                  offset={-150}
+                  className={`nav-link px-4 ${menuOpen ? "active-link" : ""}`}
+                  onClick={closeMenu}
+                >
+                  Contact & Aide
+                </ScrollLink>
+              </li>
+            </ul>
 
-      {/* Icône du menu burger */}
-      <img
-        src={menu_icon}
-        alt="Menu"
-        className={`menu-icon ${mobileMenu ? "hide-menu-icon" : ""}`} // Masquer l'icône lorsque le menu est ouvert
-        onClick={toggleMenu}
-      />
-    </nav>
+            {/* Bouton de connexion */}
+            <div className="d-flex">
+              <button className="btn login-btn" onClick={togglePopup}>
+                Se connecter
+              </button>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {/* Popup de connexion */}
+      {showPopup && (
+        <div className="popup-overlay" onClick={togglePopup}>
+          <div className="popup-content" onClick={(e) => e.stopPropagation()}>
+            <LoginContainer onClose={togglePopup} />
+          </div>
+        </div>
+      )}
+    </>
   );
-}
+};
 
 export default Navbar;

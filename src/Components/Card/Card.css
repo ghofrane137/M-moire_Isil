@@ -170,6 +170,8 @@ img {
   
     .card__container {
       grid-template-columns: repeat(3, 1fr);
+      margin-top: 0;
+
     }
     .card__img {
       width: 348px;
@@ -177,6 +179,9 @@ img {
     .card__data {
       width: 316px;
       padding-inline: 2.5rem;
+    }
+    .unique-title{
+      margin-bottom: -20%;
     }
   }
 

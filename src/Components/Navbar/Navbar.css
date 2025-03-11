@@ -1,140 +1,122 @@
-nav{
-    width: 100%;
-    /* background: #fff; */
-    color: black;
-    padding: 20px;
-    top: 0;
-    left: 0;
-    margin: 10px 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    z-index: 10;
-    position: sticky;
-    top: 0;
-    backdrop-filter: blur(45px);
+
+:root{
+    --primary-dark : #000000;
+    --primary-purple: #9886FE;
+    --primary-white:#fff;
 }
+
+
+/******************NAVBAR**********************/
+
 .logo{
-    width: 90px;
-    cursor: pointer;
-}
-ul {
-    flex :1;
-    list-style: none;
-    text-align: center;
-
-}
-ul li{
-    display: inline-block;
-    margin: 10px 20px ;
-    font-size: 18px;
-    cursor: pointer;
-    
+    width: 5.625rem;
 }
 
-  
-.btn:hover{
-    color: #fff;
-    background-color: #9886FE;
+/*********** LINKS *******************/
+
+.navbar-nav .nav-link {
+    font-weight: 400;
+    letter-spacing: 0.038rem;
+    cursor: pointer;
+    color: var(--primary-dark) !important; /* Couleur normale */
+    background-color: var(--primary-white) !important;
+    border-radius: 1.875rem;
+    padding: 1.1rem 1.5rem ;
+    font-size: 1rem;
+    white-space: nowrap;
+    margin-bottom: 0;
+
+}
+
+/* Changement de couleur au survol */
+.navbar-nav .nav-link:hover {
+    background-color: var(--primary-purple) !important;
+    color: var(--primary-white) !important;
     transition: 0.2s ;
 }
 
-.right-section {
-    display: flex;
-    align-items: center;
-    margin-left: auto; /* Pousse à droite */
+/* Changement de couleur lorsqu'un lien est actif */
+.navbar-nav .nav-link:focus,
+.navbar-nav .nav-link:active {
+    color: var(--primary-purple) !important;
+    background-color: var(--primary-white) !important;
+
 }
 
-/* Style spécifique au bouton mobile */
-.mobile-login {
-    display: none; /* Caché sur desktop */
+
+nav ul li{
+    text-transform: uppercase;
 }
 
-.login-btn {
-    background-color: #9886FE;
-    color: #fff;
-    padding: 8px 15px;
-    border-radius: 5px;
-    margin-left: -45%;
+.navbar-nav > li > a{
+    margin-right: 0.75rem;
+    margin-left: 0.75rem;
+    border-top: 0.1874rem;
+    /* color: var(--primary-dark) !important; */
+
 }
 
-.login-btn:hover {
-    background-color: #6f5de7;
-}
-.menu-icon{
-    display: none;
-    z-index: 20;
-    position: relative;
-}
-.hide-menu-icon {
-    display: none; /* Masquer l'icône lorsque le menu est ouvert */
+.navbar-brand{
+    max-width: 17.25rem;
+    padding: 0 !important;
+    height: 6rem !important;
 }
 
-/*media query*/
-@media (max-width :768px){
-    .logo{
-        width: 100px;
-    }
-    nav ul li{
-        margin: 10px 15px;
-        white-space: nowrap;
-    }
-    .menu-icon {
-        display: block;
-        width: 30px;
-        cursor: pointer;
-        margin-top: -60px;
-    }
+.navbar.fixed-top {
+    background: transparent;
+    box-shadow: none;
+  }
   
-    
+  .navbar.scrolled {
+    backdrop-filter: blur(2.813rem);
 }
-/* Version mobile */
-@media (max-width: 480px) {
-    .right-section {
-        display: none; /* Cacher le bouton dans la version desktop en mobile */
-    }
-    
 
-    .menu-icon {
-        display: block;
-        width: 30px;
-        cursor: pointer;
-    }
+.d-flex .btn {
+    margin-left: 1.25rem; /* Espacement entre les liens et le bouton */
+    background-color: var(--primary-purple);
+    color: #fff;
+    white-space: nowrap;
 
-    nav ul {
-        position: fixed;
-        top: 0;
-        right: -250px; /* Caché par défaut */
-        bottom: 0;
-        background: #b5aceb;
-        width: 200px;
-        padding-top: 20px;
-        transition: right 0.5s ease-in-out;
-        height: 1000px;
-        z-index: -1;
-    }
+  }
+  
 
-    nav ul.mobile-menu {
-        right: 0; /* Afficher le menu */
-    }
-
-    nav ul li {
-        display: block;
-        margin: 25px 40px;
-    }
-
-    /* Afficher le bouton "Se connecter" dans le menu mobile */
-    .mobile-login {
-        display: block;
-        text-align: center;
-    }
-
-    .mobile-login .login-btn {
-        display: block;
-        width: 80%;
-        margin: 20px auto;
-        background: none;
-    }
-
-    
+  /* ✅ Overlay du popup */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1050;
+  }
+  /* Styles pour les liens dans le menu mobile */
+.navbar-collapse.show .nav-link {
+    color: var(--primary-purple) !important; /* Couleur du texte */
+    background-color: var(--primary-white) !important; /* Fond */
+    margin: 0.5rem 0; /* Espacement entre les liens */
+    border-radius: 1.875rem; /* Coins arrondis */
+    text-align: center; /* Centrer le texte */
 }
+
+/* Changement de couleur au survol dans le menu mobile */
+.navbar-collapse.show .nav-link:hover {
+    background-color: var(--primary-purple) !important;
+    color: var(--primary-white) !important;
+    transition: 0.2s;
+}
+/* Styles pour le menu mobile */
+.navbar-collapse.show {
+    backdrop-filter: blur(35px);
+    padding: 1rem; /* Espacement interne */
+    border-radius: 0.5rem; /* Coins arrondis */
+    margin-top: 1rem; /* Espacement par rapport au logo */
+}
+
+
+ 
+  
+  
