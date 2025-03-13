@@ -81,7 +81,7 @@ nav ul li{
   
 
   /* ✅ Overlay du popup */
-.popup-overlay {
+  .popup-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -92,7 +92,16 @@ nav ul li{
     justify-content: center;
     align-items: center;
     z-index: 1050;
-  }
+}
+
+
+
+@media (max-width: 768px) {
+    .popup-content {
+        width: 90%;
+        padding: 1rem;
+    }
+}
   /* Styles pour les liens dans le menu mobile */
 .navbar-collapse.show .nav-link {
     color: var(--primary-purple) !important; /* Couleur du texte */

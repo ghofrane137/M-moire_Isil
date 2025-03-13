@@ -11,7 +11,7 @@ function Typewriters() {
     });
 
     return (
-        <div className="typewriter-container"> 
+        <div className="typewriter-container ms"> 
             <h1 className="typewriter-text">
                 <span className="animated-text">{text}</span>
                 <Cursor />

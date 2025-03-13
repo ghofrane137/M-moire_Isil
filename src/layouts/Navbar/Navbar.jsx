@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link as ScrollLink } from "react-scroll"; // Importez ScrollLink
 import "./Navbar.css";
 import Logo from "../../assets/Logo.PNG";
-import LoginContainer from "../Login/LoginContainer";
+import LoginContainer from "../../Components/Login/LoginContainer";
 
 const Navbar = () => {
   const [scrolling, setScrolling] = useState(false);

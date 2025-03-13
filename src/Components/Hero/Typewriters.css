@@ -1,56 +1,40 @@
-.typewriter-container {
-    text-align: left; /* Alignement du texte à gauche */
-    max-width: 600px; /* Largeur max pour éviter que ça prenne trop de place */
-    margin-left: -0.5%; /* Ajuste la position à gauche */
-    margin-top: 5%;
-}
-
 .typewriter-text {
-    font-size: 2.5rem; /* Taille du texte plus grande */
-    font-weight: bold; /* Texte en gras */
-    color: #222; /* Couleur sombre */
+    font-size: 3vw; /* Taille ajustable selon la largeur de l'écran */
+    font-weight: bold;
+    color: #222;
+    text-align: left;
+    margin-left: 10%;
 
 }
 
 .animated-text {
-    color: #9886FE; /* Couleur bleue pour le texte animé */
+    color: #9886FE;
 }
 
 .subtitle {
-    font-size: 1.4rem;
-    color: #555; /* Couleur légèrement grise */
-    margin-top: 10px;
-    margin-bottom: 40px;
+    font-size: 1.2rem; /* Taille ajustée pour les petits écrans */
+    color: #555;
+    text-align: left;
+    margin-left: 10%;
+
 }
 
-/* Media Queries pour la réactivité */
+/* 🖥️ Grands écrans */
+@media (min-width: 992px) {
+    .typewriter-text {
+        font-size: 2.5rem; /* Taille normale sur les grands écrans */
+    }
+    .subtitle {
+        font-size: 1.4rem;
+    }
+}
 
+/* 📱 Petits écrans */
 @media (max-width: 768px) {
-    .typewriter-container {
-        margin-left: 0; /* Réinitialiser la marge gauche */
-        text-align: center; /* Centrer le texte sur les écrans plus petits */
-        max-width: 100%; /* Utiliser toute la largeur disponible */
-        padding: 0 20px; /* Ajouter un peu de padding sur les côtés */
-    }
-
     .typewriter-text {
-        font-size: 2rem; /* Réduire la taille de la police pour les écrans moyens */
+        font-size: 1.8rem; /* Réduit la taille pour mobile */
     }
-
     .subtitle {
-        font-size: 1.2rem; /* Réduire la taille de la police du sous-titre */
-    }
-}
-
-@media (max-width: 480px) {
-    .typewriter-text {
-        font-size: 1.5rem; /* Réduire davantage la taille de la police pour les petits écrans */
-        background-color: rgba(0, 0, 0, 0.7); 
-    }
-
-    .subtitle {
-        font-size: 1rem; /* Réduire la taille de la police du sous-titre pour les petits écrans */
-        
-        
+        font-size: 1rem;
     }
 }

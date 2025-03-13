@@ -1,0 +1,158 @@
+/* ========================= */
+/* FOOTER STYLES */
+/* ========================= */
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  color: black;
+  margin: 3% 5% 0;
+  border-top: 1px solid black;
+}
+
+/* ========================= */
+/* SECTIONS DU FOOTER */
+/* ========================= */
+
+.footer-left,
+.footer-middle,
+.footer-right {
+  flex: 1;
+  min-width: 250px;
+}
+
+.footer-left {
+  display: flex;
+  justify-content: center; /* Centre le logo horizontalement */
+  align-items: center; /* Centre verticalement */
+}
+
+
+/* ========================= */
+/* PIED DE PAGE (COPYRIGHT) */
+/* ========================= */
+
+.footer-bottom {
+  width: 100%;
+  text-align: center;
+  margin-top: 20px;
+  padding-top: 10px;
+}
+
+.footer-bottom h1 {
+  font-size: 80%;
+}
+
+.text-center {
+  font-size: 20px;
+}
+
+/* ========================= */
+/* LOGO */
+/* ========================= */
+
+.footer-logo {
+  width: 90px;
+}
+
+/* ========================= */
+/* LIENS DU FOOTER */
+/* ========================= */
+
+.footer-middle .footer-links {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  white-space: nowrap;
+  margin-top: 20%;
+}
+
+.footer-middle .footer-links li {
+  margin: 0 15px;
+  align-items: center;
+}
+
+.footer-middle .footer-links a:hover {
+  color: #9886FE;
+}
+
+/* ========================= */
+/* SECTION AVIS */
+/* ========================= */
+
+.footer-right {
+  text-align: right;
+}
+
+.footer-right h3 {
+  font-size: 1rem;
+  margin-top: 5%;
+}
+
+/* ========================= */
+/* FORMULAIRE D'AVIS */
+/* ========================= */
+
+/* Champ de commentaire */
+.review-input {
+  width: 90%;
+  height: 50px;
+  padding: 10px;
+  border-radius: 15px;
+  border: 1px solid #ccc;
+  margin-bottom: 9px;
+  font-size: 1rem;
+  resize: vertical;
+}
+
+/* Bouton d'envoi */
+.submit-review {
+  background-color: #9886FE;
+  color: #fff;
+  padding: 9px 10px;
+  border: none;
+  border-radius: 15px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.submit-review:hover {
+  background-color: #473c85;
+}
+
+/* ========================= */
+/* RESPONSIVE DESIGN */
+/* ========================= */
+
+@media (max-width: 768px) {
+  .footer {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-left,
+  .footer-middle,
+  .footer-right {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .footer-logo {
+    margin-bottom: 20px;
+  }
+
+  .footer-middle .footer-links {
+    flex-direction: column;
+  }
+
+  .footer-middle .footer-links li {
+    margin: 10px 0;
+  }
+
+  .footer-bottom {
+    margin-left: 0;
+    margin: 10px 0;
+  }
+}

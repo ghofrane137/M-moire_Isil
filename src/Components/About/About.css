@@ -1,83 +1,50 @@
+/* Section About */
 .about {
-    margin: 8rem auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 90%;
-    max-width: 1200px; /* Empêche un affichage trop large sur les grands écrans */
-    margin-bottom: 4rem;
-    flex-wrap: wrap; /* Permet aux éléments de passer en colonne sur petits écrans */
+    padding: 50px 0;
+    border-radius: 10px;
 }
 
-.about-left {
-    flex-basis: 40%;
+.about-img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.about-right {
-    flex-basis: 56%;
+.about-body {
+    padding: 20px;
 }
 
-.about_img {
-    width: 100%;
-    border-radius: 30px;
+.about-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #5a5a5a;
 }
 
-.about h3 {
-    font-weight: 600;
-    font-size: 1rem; /* Évite les erreurs (avant, il y avait `font-weight: 16px`) */
-    color: #9886FE;
+.about-body h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
 }
 
-.about h2 {
-    font-size: 2.2rem; /* Responsive */
-    color: #000F38;
-    margin: 10px 0;
-    max-width: 400px;
-}
-
-.about p {
-    color: #676767;
-    margin-bottom: 15px;
+.about-body p {
     font-size: 1.1rem;
-    line-height: 1.5; /* Améliore la lisibilité */
+    color: #555;
+    line-height: 1.6;
 }
 
-/* ✅ Responsivité pour tablettes */
-@media (max-width: 1024px) {
-    .about {
-        flex-direction: column; /* Empile les éléments sur les petits écrans */
-        text-align: center;
-    }
-    
-    .about-left, .about-right {
-        flex-basis: 100%;
-        max-width: 100%;
-    }
 
-    .about h2 {
-        font-size: 2rem;
-    }
-}
-
-/* ✅ Responsivité pour mobiles */
+/* Responsivité */
 @media (max-width: 768px) {
     .about {
         text-align: center;
     }
-
-    .about-left {
-        margin-bottom: 1.5rem;
-    }
-
-    .about h2 {
-        font-size: 1.8rem;
-    }
-
-    .about p {
-        font-size: 1rem;
+    
+    .about-img {
+        margin-bottom: 20px;
     }
 
     .login-btn {
-        margin-left: 1px;
+        width: 100%;
     }
 }
