@@ -1,48 +1,76 @@
-/* LoginContainer.css */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+/* ----- Conteneur Principal ----- */
+.container-login {
+    width: 100%;
+    padding: 15px;
+    
 
+}
 
-/* Conteneur principal */
-
-
+/* ----- Boîte principale ----- */
 .box-area {
-    width: 930px;
-    max-width: 100%; /* Évite que ça dépasse l'écran */
-  
+    width: 90%;
+    max-width: 1000px;
+
 }
 
-
-/* Partie droite */
-.right-box {
-  padding: 40px 30px 40px 40px;
-  
+/* ----- Partie gauche (Image) ----- */
+.left-box {
+    background: #F8F4F1;
+    text-align: center;
 }
 
-/* Placeholder personnalisé */
-::placeholder {
-  font-size: 16px;
-}
-.rounded-4{
-    border-radius: 20px;
-}
-.rounded-5{
-    border-radius: 30px;
+.featured-image img {
+    max-width: 100%;
+    height: auto;
 }
 
-.text-purple{
-    color: #6f5de7;
-}
-
-/* Media Queries pour les petits écrans */
-@media only screen and (max-width: 768px){
-    .box-area{
-       margin: 0 10px;
+/* ----- Responsive (Écrans < 768px) ----- */
+@media only screen and (max-width: 768px) {
+    .box-area {
+        flex-direction: column;
+        width: 95%;
     }
-    .left-box{
-       height: 100px;
-       overflow: hidden;
+
+    .left-box {
+        display: none; /* Cacher l'image sur mobile */
     }
-    .right-box{
-       padding: 20px;
+
+    .right-box {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .btn-close {
+        top: 10px;
+        right: 10px;
+    }
+
+    .avatar-option {
+        width: 40px !important;
+        height: 40px !important;
     }
 }
+
+/* ----- Très petits écrans (< 480px) -----
+@media only screen and (max-width: 480px) {
+    .header-text h2 {
+        font-size: 1.5rem;
+    }
+
+    .header-text p {
+        font-size: 1rem;
+    }
+
+    .form-control {
+        font-size: 0.9rem;
+    }
+
+    .btn {
+        font-size: 0.9rem;
+        padding: 10px;
+    }
+
+    .text-center small {
+        font-size: 0.9rem;
+    }
+} */

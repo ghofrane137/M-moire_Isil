@@ -1,0 +1,41 @@
+/* Style général de la navbar */
+.navbar {
+    background-color: #f8f9fa !important;
+    border-radius: 10px;
+}
+
+/* Style du champ de recherche */
+.navbar .form-control {
+    border-radius: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    
+}
+
+
+/* Bouton du menu responsive */
+.navbar .btn-outline-secondary {
+    border-radius: 20px;
+    padding: 8px 15px;
+    font-weight: bold;
+    margin-right: 16%;
+}
+
+/* Cartes des résultats */
+.card {
+    transition: transform 0.2s;
+}
+.card:hover {
+    transform: scale(1.02);
+}
+.card-body img {
+    border: 1px solid #ddd;
+}
+
+/* Offcanvas Sidebar */
+.offcanvas {
+    width: 250px;
+}
+.logo{
+    width: 5.625rem;
+}
