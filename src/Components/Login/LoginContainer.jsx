@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Ajout de useNavigate
 import './LoginContainer.css';
 import login_img from "../../assets/login-removebg-preview.png";
 import img1 from "../../assets/profil1.png";
@@ -27,6 +28,7 @@ const LoginContainer = ({ onClose }) => {
   });
   const [error, setError] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
+  const navigate = useNavigate(); // Ajout pour gérer la navigation
 
   const handleInputChange = (e) => {
     setFormData({
@@ -76,7 +78,7 @@ const LoginContainer = ({ onClose }) => {
           prenom: formData.prenom,
           email: formData.email,
           password: formData.password,
-          avatar: selectedAvatar || 'default', // Envoi de l'avatar (optionnel)
+          avatar: selectedAvatar || 'default',
         }
       : {
           email: formData.email,
@@ -92,40 +94,29 @@ const LoginContainer = ({ onClose }) => {
         },
       });
       console.log('Réponse du backend :', response.data);
-      const { token, message, profileCompleted, role } = response.data;
+      const { token, message, redirectUrl } = response.data; // Utiliser redirectUrl
 
       localStorage.setItem('token', token);
 
       if (isSignUp) {
-        setSuccessMessage(message); // "Un email de confirmation a été envoyé."
+        setSuccessMessage(message);
         setTimeout(() => {
           onClose();
         }, 2000);
       } else {
         setSuccessMessage(message);
         setTimeout(() => {
-          if (!profileCompleted) {
-            window.location.href = '/complete-profile'; // Redirection si le profil n'est pas complet
-          } else {
-            window.location.href = '/dashboard'; // Redirection vers le tableau de bord
-          }
+          navigate(redirectUrl); // Redirection basée sur redirectUrl du backend
         }, 2000);
       }
     } catch (err) {
       const errorMessage = err.response?.data?.message || 'Une erreur est survenue.';
-      if (errorMessage === "Cet email est déjà utilisé.") {
-        setError("Cet email est déjà utilisé. Veuillez utiliser un autre email.");
-      } else if (errorMessage === "Email ou mot de passe incorrect.") {
-        setError("Email ou mot de passe incorrect. Veuillez réessayer.");
-      } else if (errorMessage === "Veuillez vérifier votre email avant de vous connecter.") {
-        setError("Veuillez vérifier votre email avant de vous connecter.");
-      } else {
-        setError(errorMessage);
-      }
+      setError(errorMessage);
       console.error('Erreur détaillée:', err.response || err.message);
     }
   };
 
+  // Le reste du code (JSX) reste inchangé
   return (
     <div className="container-login d-flex justify-content-center align-items-center min-vh-100">
       <div className="row border rounded-5 p-3 bg-white shadow box-area position-relative">
@@ -143,7 +134,7 @@ const LoginContainer = ({ onClose }) => {
 
         <div className="col-md-6 right-box">
           <div className="row align-items-center">
-            <div className="header-text mb-4">
+            <div className="header-text mb-1">
               <h2>{isSignUp ? "Créer un compte" : "Bonjour, de nouveau"}</h2>
               <p>{isSignUp ? "Rejoignez-nous aujourd'hui !" : "Heureux de vous revoir."}</p>
             </div>
@@ -239,7 +230,7 @@ const LoginContainer = ({ onClose }) => {
                 </div>
               )}
 
-              <div className="input-group mb-3">
+              <div className="input-group mb-2">
                 <button 
                   type="submit"
                   className="text-purpul btn btn-lg btn-primary w-100 fs-6" 

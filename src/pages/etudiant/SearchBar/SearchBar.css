@@ -1,0 +1,84 @@
+/* Conteneur de la barre de recherche */
+.search-container {
+  width: 50%; /* 50% de la largeur de la page */
+  max-width: 600px; /* Largeur maximale */
+  margin: 0 auto; /* Centrer */
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+/* Conteneur du formulaire */
+.search-form {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 10px; /* Ajoute un espace entre l'input et le bouton */
+}
+
+/* Champ de recherche */
+.form-control {
+  border-radius: 30px;
+  border: 2px solid #9886FE;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  flex-grow: 1;
+  height: 60px;
+  min-width: 0; /* Empêche la déformation */
+}
+
+.form-control:focus {
+  border-color: #9886FE;
+  box-shadow: none;
+}
+
+/* Bouton de recherche */
+.btn-outline-info {
+  border-radius: 30px;
+  border: 2px solid #9886FE;
+  color: #fff;
+  padding: 1rem 1.8rem;
+  font-size: 1.5rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  background-color: #9886FE;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 60px; /* Largeur minimum */
+}
+
+.btn-outline-info:hover {
+  background-color: #7a5ef1;
+  color: white;
+}
+
+/* Rendre la barre de recherche responsive */
+@media screen and (max-width: 768px) {
+  .search-container {
+    width: 90%; /* Utilise plus d'espace sur mobile */
+  }
+  
+  .form-control {
+    font-size: 1rem;
+    padding: 0.8rem 1.5rem;
+    height: 50px;
+  }
+
+  .btn-outline-info {
+    font-size: 1.2rem;
+    height: 50px;
+    padding: 0.8rem 1.5rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .search-form {
+    flex-direction: column;
+    gap: 5px; /* Moins d'espace sur mobile */
+  }
+
+  .btn-outline-info {
+    width: 100%; /* Bouton pleine largeur */
+  }
+}

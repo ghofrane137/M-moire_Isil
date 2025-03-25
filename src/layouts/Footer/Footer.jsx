@@ -49,9 +49,9 @@ const Footer = () => {
 
   <div className="footer-middle">
     <ul className="footer-links">
-      <li><Link to="about" smooth={true} offset={-200} duration={500}>À propos</Link></li>
-      <li><Link to="contact" smooth={true} offset={-150} duration={500}>Contact & Aide</Link></li>
-      <li><Link to="slider-container" smooth={true} offset={-150} duration={500}>Avis</Link></li>
+      <li><Link to="about" smooth={false} offset={-200} duration={500}>À propos</Link></li>
+      <li><Link to="contact" smooth={false} offset={-150} duration={500}>Contact & Aide</Link></li>
+      <li><Link to="slider-container" smooth={false} offset={-150} duration={500}>Avis</Link></li>
     </ul>
   </div>
 
