@@ -6,6 +6,12 @@ import EnseignantHome from './pages/enseignant/enseignant';
 import CompleteProfileEtudiantPage from './pages/CompleteProfil/CompleteEtudiantProfile';
 import CompleteProfileEnseignantPage from './pages/CompleteProfil/CompleteEnseignantProfile';
 import VerifyEmail from './pages/CompleteProfil/VerifyEmail';
+import SearchPageEtudiant from './pages/etudiant/SearchPageEtudiant/SearchPageEtudiant'
+import SearchPage from './pages/SearchPage/SearchPage';
+// Import Bootstrap CSS
+import "bootstrap/dist/css/bootstrap.min.css";
+// Import Bootstrap JS
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 const App = () => {
   return (
@@ -20,6 +26,8 @@ const App = () => {
         <Route path="/complete-profile/enseignant" element={<CompleteProfileEnseignantPage />} />
         <Route path="/verify-email" element={<VerifyEmail />} />
         <Route path="/dashboard" element={<EtudiantHome />} />
+        <Route path="/search-page-etudiant" element={<SearchPageEtudiant />} />
+        <Route path="/search-page" element={<SearchPage />} />
       </Routes>
     </Router>
   );

@@ -9,8 +9,10 @@ function SearchBar() {
   const navigate = useNavigate();
 
   const handleSearch = (e) => {
-    e.preventDefault();
-    navigate(`/search?query=${encodeURIComponent(query)}`); // Redirige vers la page de recherche avec la requête
+    e.preventDefault(); // Empêche le rechargement de la page
+    if (query.trim()) { // Vérifie que la requête n'est pas vide
+      navigate(`/search-page?query=${encodeURIComponent(query)}`);
+    }
   };
 
   return (
@@ -19,7 +21,7 @@ function SearchBar() {
         <input
           className="form-control ms-1"
           type="search"
-          placeholder="Search"
+          placeholder="Rechercher..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />

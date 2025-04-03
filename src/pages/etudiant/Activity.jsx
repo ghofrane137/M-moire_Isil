@@ -1,6 +1,11 @@
 import React from "react";
 import Recomended from "./Recomended";
 
+import pdf from "../../assets/pdf.png";
+import saved from "../../assets/saved.png";
+import download from "../../assets/download.png";
+
+
 const activity = [
   { id: "1", subject: "Mathematics", time: "Viewed yesterday" },
   { id: "2", subject: "Physics", time: "Viewed today" },
@@ -23,7 +28,7 @@ function Activity() {
                 <hr />
                 <div className="d-flex align-items-center">
                   {/* PDF Icon */}
-                  <img width="30" height="30" className="me-3 align-self-start mt-1" src="./Assets/pdf.png" alt="pdf icon" />
+                  <img width="30" height="30" className="me-3 align-self-start mt-1" src={pdf} alt="pdf icon" />
 
                   {/* Subject and Time */}
                   <div className="d-flex flex-column flex-grow-1">
@@ -32,8 +37,8 @@ function Activity() {
                   </div>
 
                   {/* Action Icons */}
-                  <img width="20" height="20" className="ms-2" src="./Assets/saved.png" alt="saved icon" />
-                  <img width="20" height="20" className="ms-2" src="./Assets/download.png" alt="download icon" />
+                  <img width="20" height="20" className="ms-2" src={saved} alt="saved icon" />
+                  <img width="20" height="20" className="ms-2" src={download} alt="download icon" />
                 </div>
               </div>
             ))}

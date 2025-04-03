@@ -84,7 +84,7 @@ const SearchPage = () => {
         const difficultyMap = { "facile": "FACILE", "moyen": "MOYEN", "difficile": "DIFFICILE" };
         const mappedDifficulty = difficultyMap[difficulty] || "";
 
-        axios.get(`http://localhost:8080/api/visiteur/search`, {
+        axios.get(`http://localhost:8080/api/v1/visiteur/search`, {
             params: {
                 search: query || undefined,
                 universiteNom: selectedUniversity ? universities.find(u => u.id === parseInt(selectedUniversity))?.nom : undefined,

@@ -1,11 +1,19 @@
 import React from "react";
 
+
+import saved from "../../assets/saved.png";
+import download from "../../assets/download.png";
+import view from "../../assets/view.png";
+import validation from "../../assets/validation.png";
+
+
 const features = [
-  { id: "Downloads", title: "Downloads", number: "45", src: "./Assets/download.png", alt: "Download Icon", description: "Paragraph of text beneath the heading to explain the heading." },
-  { id: "Saved", title: "Saved", number: "06", src: "./Assets/saved.png", alt: "Saved Icon", description: "Paragraph of text beneath the heading to explain the heading." },
-  { id: "Views1", title: "Views", number: "89", src: "./Assets/view.png", alt: "Views Icon", description: "Paragraph of text beneath the heading to explain the heading." },
-  { id: "Views2", title: "Ressource Acceptee", number: "07", src: "./Assets/validation.png", alt: "Validate Icon", description: "Paragraph of text beneath the heading to explain the heading." },
+  { id: "Downloads", title: "Downloads", number: "45", src: download, alt: "Download Icon", description: "Paragraph of text beneath the heading to explain the heading." },
+  { id: "Saved", title: "Saved", number: "06", src: saved, alt: "Saved Icon", description: "Paragraph of text beneath the heading to explain the heading." },
+  { id: "Views1", title: "Views", number: "89", src: view, alt: "Views Icon", description: "Paragraph of text beneath the heading to explain the heading." },
+  { id: "Views2", title: "Ressource Acceptee", number: "07", src: validation, alt: "Validate Icon", description: "Paragraph of text beneath the heading to explain the heading." },
 ];
+
 
 const Statistique = () => {
   return (

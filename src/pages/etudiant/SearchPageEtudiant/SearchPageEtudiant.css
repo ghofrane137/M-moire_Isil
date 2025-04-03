@@ -1,0 +1,108 @@
+/* Style général de la navbar */
+.navbar {
+    background-color: #f8f9fa !important;
+    border-radius: 10px;
+}
+
+/* Style du champ de recherche */
+.navbar .form-control {
+    border-radius: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    
+}
+
+
+/* Bouton du menu responsive */
+.navbar .btn-outline-secondary {
+    border-radius: 20px;
+    padding: 8px 15px;
+    font-weight: bold;
+    margin-right: 16%;
+}
+
+/* Cartes des résultats */
+.card {
+    transition: transform 0.2s;
+}
+.card:hover {
+    transform: scale(1.02);
+}
+.card-body img {
+    border: 1px solid #ddd;
+}
+
+/* Offcanvas Sidebar */
+.offcanvas {
+    width: 250px;
+}
+.logo{
+    width: 5.625rem;
+}
+/* Styles pour les cartes Instagram (inchangés) */
+.instagram-card {
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.2s;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+}
+
+.instagram-card:hover {
+    transform: scale(1.05);
+}
+
+.instagram-card .card-img-top {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+}
+
+.instagram-card .card-body {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px !important;
+}
+
+.instagram-card .card-title {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.instagram-card .card-text {
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.instagram-card .btn {
+    font-size: 12px;
+    padding: 5px;
+}
+
+/* Styles pour les boutons personnalisés */
+.custom-btn {
+    background-color: transparent;
+    border: 2px solid #9886FE; /* Bordure violette */
+    color: #9886FE; /* Texte violet */
+    border-radius: 20px;
+    font-size: 14px;
+    padding: 5px 15px;
+    transition: all 0.3s ease;
+}
+
+.custom-btn:hover {
+    background-color: #9886FE; /* Fond violet au survol */
+    color: white; /* Texte blanc au survol */
+}
+
+.custom-btn.active {
+    background-color: #9886FE; /* Fond violet pour le bouton actif */
+    color: white; /* Texte blanc pour le bouton actif */
+    border-color: #9886FE;
+}
+
+

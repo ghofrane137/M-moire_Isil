@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { ChevronRight, ChevronDown, Plus, X, FolderPlus } from "lucide-react";
 
+import  Library  from "../../assets/Library.png";
+
 const LibraryMenu = ({ isOpen }) => {
   const [showLibraries, setShowLibraries] = useState(false);
   const [libraries, setLibraries] = useState([]);
@@ -84,7 +86,7 @@ const LibraryMenu = ({ isOpen }) => {
         onClick={toggleLibraryList}
       >
         <img
-          src="./Assets/Library.png"
+          src={Library}
           alt="Library Logo"
           width="30"
           height="30"

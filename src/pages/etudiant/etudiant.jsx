@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './etudiant.css';
 import Modal from '../CompleteProfil/Modal';
 import CompleteEtudiantProfile from '../CompleteProfil/CompleteEtudiantProfile';
 import Sidebar from "./Sidebar";
@@ -11,6 +12,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import Title from "./Title";
 import { ChevronRight, ChevronDown } from "lucide-react";
 import SearchBar from "./SearchBar/SearchBar"
+
 
 const Etudiant = () => {
   const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
