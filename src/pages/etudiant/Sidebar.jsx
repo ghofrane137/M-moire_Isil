@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
-import { useNavigate } from "react-router-dom"; // Importer useNavigate
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import LibraryMenu from "./Libray";
+import LibraryMenu from "./LibraryMenu";
 import profil1 from "../../assets/profil1.png";
 import profil2 from "../../assets/profil2.png";
 import profil3 from "../../assets/profil3.png";
@@ -14,6 +14,7 @@ import Recomended from "../../assets/Recomended.png";
 import Rate_Us from "../../assets/Rate_Us.png";
 import Ressource from "../../assets/Ressource.png";
 import settings from "../../assets/settings.png";
+import libraryIcon from "../../assets/library.png";
 
 const avatarMap = {
   profil1: profil1,
@@ -24,10 +25,11 @@ const avatarMap = {
 };
 
 function Sidebar() {
-  const navigate = useNavigate(); // Initialiser navigate avec useNavigate
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(true);
   const [darkMode, setDarkMode] = useState(false);
   const [showUploadModal, setShowUploadModal] = useState(false);
+  const [showLibraryModal, setShowLibraryModal] = useState(false);
   const [userData, setUserData] = useState({
     nom: "",
     prenom: "",
@@ -54,18 +56,24 @@ function Sidebar() {
     nbrPages: "",
     niveau: "",
   });
+  const [libraryData, setLibraryData] = useState({
+    nom: "",
+    statut: "PRIVE",
+  });
   const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [universites, setUniversites] = useState([]);
   const [specialites, setSpecialites] = useState([]);
   const [modules, setModules] = useState([]);
+  const [libraries, setLibraries] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const currentYear = new Date().getFullYear();
   const maxYear = currentYear + 1;
 
   useEffect(() => {
-    const fetchUserData = async () => {
+    const fetchUserDataAndLibraries = async () => {
       const token = localStorage.getItem("token");
       if (!token) {
         setError("No authentication token found.");
@@ -74,10 +82,11 @@ function Sidebar() {
       }
 
       try {
-        const response = await axios.get("http://localhost:8080/api/v1/user/me", {
+        setIsLoading(true);
+        const userResponse = await axios.get("http://localhost:8080/api/v1/user/me", {
           headers: { Authorization: `Bearer ${token}` },
         });
-        const { nom, prenom, avatar, universite, filiere, specialite, niveau, filiereId } = response.data;
+        const { nom, prenom, avatar, universite, filiere, specialite, niveau, filiereId } = userResponse.data || {};
         setUserData({
           nom: nom || "Utilisateur",
           prenom: prenom || "",
@@ -88,52 +97,59 @@ function Sidebar() {
           niveau: niveau || "Non spécifié",
           filiereId: filiereId || null,
         });
-        console.log("User data fetched:", response.data);
 
         const universitesResponse = await axios.get("http://localhost:8080/api/etudiant/universitesE", {
           headers: { Authorization: `Bearer ${token}` },
         });
-        setUniversites(universitesResponse.data);
+        setUniversites(universitesResponse.data || []);
+
+        const librariesResponse = await axios.get("http://localhost:8080/api/bibliotheques/current-user", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        const formattedLibraries = (librariesResponse.data || []).map((lib) => ({
+          id: lib.id,
+          name: lib.nom || "Unnamed Library",
+          resources: (lib.ressources || []).map((res) => res.titre || "Unnamed Resource"),
+          statut: lib.statut || "PRIVE",
+        }));
+        setLibraries(formattedLibraries);
 
         setLoading(false);
       } catch (err) {
-        setError("Failed to fetch user data: " + (err.response?.data?.message || err.message));
-        console.error("Error fetching user data:", err.response || err.message);
+        setError("Failed to fetch data: " + (err.response?.data?.message || err.message));
         setLoading(false);
+      } finally {
+        setIsLoading(false);
       }
     };
-    fetchUserData();
+    fetchUserDataAndLibraries();
   }, []);
 
   useEffect(() => {
     const fetchSpecialites = async () => {
-      if (uploadData.niveau) {
-        try {
-          const token = localStorage.getItem("token");
-          const specialitesResponse = await axios.get(
-            `http://localhost:8080/api/etudiant/specialites-by-niveauE?niveau=${uploadData.niveau}`,
-            { headers: { Authorization: `Bearer ${token}` } }
-          );
-          setSpecialites(specialitesResponse.data || []);
-          setError(null);
-        } catch (err) {
-          if (err.response?.status === 403) {
-            setError("Accès refusé : vous n'avez pas les permissions pour ce niveau.");
-          } else if (err.response?.status === 404) {
-            setSpecialites([]);
-            setError("Aucune spécialité disponible pour ce niveau.");
-          } else {
-            setError("Erreur lors de la récupération des spécialités : " + (err.response?.data?.message || err.message));
-          }
-          console.error("Error fetching specialites:", err.response || err.message);
-          setSpecialites([]);
-          setModules([]);
-          setUploadData((prev) => ({ ...prev, specialiteId: "", moduleId: "" }));
-        }
-      } else {
+      if (!uploadData.niveau) {
         setSpecialites([]);
         setModules([]);
         setUploadData((prev) => ({ ...prev, specialiteId: "", moduleId: "" }));
+        return;
+      }
+
+      try {
+        setIsLoading(true);
+        const token = localStorage.getItem("token");
+        const specialitesResponse = await axios.get(
+          `http://localhost:8080/api/etudiant/specialites-by-niveauE?niveau=${uploadData.niveau}`,
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+        setSpecialites(specialitesResponse.data || []);
+        setError(null);
+      } catch (err) {
+        setError("Erreur lors de la récupération des spécialités: " + (err.response?.data?.message || err.message));
+        setSpecialites([]);
+        setModules([]);
+        setUploadData((prev) => ({ ...prev, specialiteId: "", moduleId: "" }));
+      } finally {
+        setIsLoading(false);
       }
     };
     fetchSpecialites();
@@ -141,22 +157,25 @@ function Sidebar() {
 
   useEffect(() => {
     const fetchModules = async () => {
-      if (uploadData.specialiteId) {
-        try {
-          const token = localStorage.getItem("token");
-          const modulesResponse = await axios.get(
-            `http://localhost:8080/api/etudiant/modulesE?specialiteId=${uploadData.specialiteId}`,
-            { headers: { Authorization: `Bearer ${token}` } }
-          );
-          setModules(modulesResponse.data || []);
-          setError(null);
-        } catch (err) {
-          setError("Failed to fetch modules: " + (err.response?.data?.message || err.message));
-          console.error("Error fetching modules:", err.response || err.message);
-          setModules([]);
-        }
-      } else {
+      if (!uploadData.specialiteId) {
         setModules([]);
+        return;
+      }
+
+      try {
+        setIsLoading(true);
+        const token = localStorage.getItem("token");
+        const modulesResponse = await axios.get(
+          `http://localhost:8080/api/etudiant/modulesE?specialiteId=${uploadData.specialiteId}`,
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+        setModules(modulesResponse.data || []);
+        setError(null);
+      } catch (err) {
+        setError("Failed to fetch modules: " + (err.response?.data?.message || err.message));
+        setModules([]);
+      } finally {
+        setIsLoading(false);
       }
     };
     fetchModules();
@@ -170,6 +189,8 @@ function Sidebar() {
   };
 
   const handleUploadClick = () => setShowUploadModal(true);
+
+  const handleLibraryClick = () => setShowLibraryModal(true);
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -188,6 +209,11 @@ function Sidebar() {
       ...(name === "niveau" && { specialiteId: "", moduleId: "" }),
       ...(name === "specialiteId" && { moduleId: "" }),
     }));
+  };
+
+  const handleLibraryInputChange = (e) => {
+    const { name, value } = e.target;
+    setLibraryData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleFileChange = (e) => setFile(e.target.files[0]);
@@ -215,13 +241,13 @@ function Sidebar() {
     formData.append("file", file);
 
     try {
-      const response = await axios.post("http://localhost:8080/api/v1/ressources/upload", formData, {
+      setIsLoading(true);
+      await axios.post("http://localhost:8080/api/v1/ressources/upload", formData, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "multipart/form-data",
         },
       });
-      console.log("Upload successful:", response.data);
       setShowUploadModal(false);
       setUploadData({
         titre: "",
@@ -243,7 +269,47 @@ function Sidebar() {
       setError(null);
     } catch (error) {
       setError("Erreur lors de l'upload: " + (error.response?.data?.message || error.message));
-      console.error("Upload error:", error.response || error.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleCreateLibrary = async (e) => {
+    e.preventDefault();
+    const token = localStorage.getItem("token");
+    if (!token) {
+      setError("No authentication token found.");
+      return;
+    }
+
+    try {
+      setIsLoading(true);
+      const response = await axios.post(
+        "http://localhost:8080/api/bibliotheques/bibliotheques",
+        libraryData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      setLibraries((prev) => [
+        ...prev,
+        {
+          id: response.data.id,
+          name: response.data.nom || "Unnamed Library",
+          resources: (response.data.ressources || []).map((res) => res.titre || "Unnamed Resource"),
+          statut: response.data.statut || "PRIVE",
+        },
+      ]);
+      setShowLibraryModal(false);
+      setLibraryData({ nom: "", statut: "PRIVE" });
+      setError(null);
+    } catch (err) {
+      setError("Erreur lors de la création de la bibliothèque: " + (err.response?.data?.message || err.message));
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -258,6 +324,7 @@ function Sidebar() {
       }`}
       style={{ width: isOpen ? "280px" : "80px", transition: "width 0.3s ease" }}
     >
+      {isLoading && <div className="text-center">Chargement...</div>}
       <button className="btn btn-light mb-3" onClick={() => setIsOpen(!isOpen)} style={{ alignSelf: "flex-end" }}>
         {isOpen ? <X size={24} /> : <Menu size={24} />}
       </button>
@@ -281,7 +348,7 @@ function Sidebar() {
                   top: "-10px",
                   zIndex: 0,
                 }}
-              ></div>
+              />
               <div
                 style={{
                   width: "75px",
@@ -307,7 +374,7 @@ function Sidebar() {
                   {userData.prenom} {userData.nom}
                 </h5>
                 <p className="text-muted small mb-0" style={{ fontSize: "14px" }}>
-                  <i className="bi bi-mortarboard-fill me-1" style={{ color: "#6c5ce7" }}></i>
+                  <i className="bi bi-mortarboard-fill me-1" style={{ color: "#6c5ce7" }} />
                   {userData.universite}
                 </p>
               </div>
@@ -321,10 +388,11 @@ function Sidebar() {
       <ul className="nav nav-pills flex-column mb-2">
         {[
           { src: house, label: "Home" },
-          { src: exam, label: "Search", onClick: () => navigate("/search-page-etudiant") }, // Navigation corrigée
+          { src: exam, label: "Search", onClick: () => navigate("/search-page-etudiant") },
           { src: Recomended, label: "Recommended" },
           { src: Rate_Us, label: "Rate Us" },
           { src: Ressource, label: "Upload Resource", onClick: handleUploadClick },
+          { src: libraryIcon, label: "Create Library", onClick: handleLibraryClick },
           { src: settings, label: "Settings" },
         ].map((item, index) => (
           <li key={index} className="nav-item">
@@ -332,7 +400,7 @@ function Sidebar() {
               href="#"
               className="nav-link text-dark d-flex align-items-center sidebar-link"
               onClick={(e) => {
-                e.preventDefault(); // Empêche le comportement par défaut du lien
+                e.preventDefault();
                 if (item.onClick) item.onClick();
               }}
             >
@@ -342,9 +410,103 @@ function Sidebar() {
           </li>
         ))}
         <li className="nav-item">
-          <LibraryMenu isOpen={isOpen} />
+          <LibraryMenu isOpen={isOpen} libraries={libraries} setLibraries={setLibraries} />
         </li>
       </ul>
+
+      {showLibraryModal && (
+        <div
+          className="modal"
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: "rgba(0,0,0,0.5)",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            zIndex: 1050,
+          }}
+        >
+          <div
+            className="modal-content"
+            style={{
+              background: "white",
+              padding: "25px",
+              borderRadius: "12px",
+              width: "400px",
+              boxShadow: "0 5px 15px rgba(0,0,0,0.2)",
+            }}
+          >
+            <div className="d-flex justify-content-between align-items-center mb-4">
+              <h3 style={{ color: "#6f5de7", fontWeight: "600" }}>Créer une bibliothèque</h3>
+              <button
+                onClick={() => setShowLibraryModal(false)}
+                className="btn-close"
+                style={{ fontSize: "1.2rem" }}
+              />
+            </div>
+
+            {error && <div className="alert alert-danger" role="alert">{error}</div>}
+
+            <form onSubmit={handleCreateLibrary}>
+              <div className="mb-3">
+                <label className="form-label">Nom de la bibliothèque *</label>
+                <input
+                  type="text"
+                  name="nom"
+                  value={libraryData.nom}
+                  onChange={handleLibraryInputChange}
+                  className="form-control"
+                  style={{ borderRadius: "8px", borderColor: "#ddd" }}
+                  required
+                />
+              </div>
+
+              <div className="mb-3">
+                <label className="form-label">Statut *</label>
+                <select
+                  name="statut"
+                  value={libraryData.statut}
+                  onChange={handleLibraryInputChange}
+                  className="form-select"
+                  style={{ borderRadius: "8px", borderColor: "#ddd" }}
+                  required
+                >
+                  <option value="PRIVE">Privé</option>
+                  <option value="PUBLIC">Public</option>
+                </select>
+              </div>
+
+              <div className="d-flex justify-content-end gap-3 mt-4">
+                <button
+                  type="button"
+                  className="btn btn-outline-secondary"
+                  onClick={() => setShowLibraryModal(false)}
+                  style={{ borderRadius: "8px", padding: "8px 20px", borderColor: "#6f5de7" }}
+                >
+                  Annuler
+                </button>
+                <button
+                  type="submit"
+                  className="btn btn-primary"
+                  style={{
+                    borderRadius: "8px",
+                    padding: "8px 20px",
+                    backgroundColor: "#6f5de7",
+                    borderColor: "#6f5de7",
+                  }}
+                  disabled={isLoading}
+                >
+                  {isLoading ? "Création..." : "Créer"}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
 
       {showUploadModal && (
         <div
@@ -383,11 +545,7 @@ function Sidebar() {
               />
             </div>
 
-            {error && (
-              <div className="alert alert-danger" role="alert">
-                {error}
-              </div>
-            )}
+            {error && <div className="alert alert-danger" role="alert">{error}</div>}
 
             <form onSubmit={handleSubmit}>
               <div className="row">
@@ -673,9 +831,9 @@ function Sidebar() {
                     backgroundColor: "#6f5de7",
                     borderColor: "#6f5de7",
                   }}
+                  disabled={isLoading}
                 >
-                  <i className="bi bi-upload me-2"></i>
-                  Upload
+                  {isLoading ? "Upload en cours..." : "Upload"}
                 </button>
               </div>
             </form>
